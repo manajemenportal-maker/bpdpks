@@ -1,129 +1,282 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
- <meta charset="UTF-8" />
- <meta name="viewport" content="width=device-width, initial-scale=1.0" />
- <title>Sistem Program Peremajaan Sawit untuk Petani & Gapoktan</title>
- <style>
-  :root{
-   --green:#0f5b3f;--green2:#16865d;--lime:#d7f7b2;--gold:#ffc857;--cream:#fff8e8;--dark:#10231b;--muted:#6b7b73;--line:#dbe7df;--danger:#b83232;--ok:#16865d;--blue:#2b6cb0;
-   --shadow:0 16px 45px rgba(15,91,63,.14);--r:22px;
-  }
-  *{box-sizing:border-box} body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:linear-gradient(180deg,#f6fff3 0,#fff 35%,#f4faf6 100%);color:var(--dark)}
-  header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.88);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
-  .nav{max-width:1220px;margin:auto;padding:12px 18px;display:flex;align-items:center;justify-content:space-between;gap:14px}.brand{display:flex;align-items:center;gap:11px;font-weight:900}.logo{width:44px;height:44px;border-radius:15px;background:radial-gradient(circle at 30% 25%,#fff 0 12%,transparent 13%),linear-gradient(135deg,var(--green),var(--green2));box-shadow:var(--shadow);position:relative}.logo:after{content:"";position:absolute;right:8px;bottom:8px;width:15px;height:15px;background:var(--gold);border-radius:50%}.brand small{display:block;font-weight:700;color:var(--muted);font-size:11px}.navlinks{display:flex;gap:8px;flex-wrap:wrap}.navlinks button{border:0;background:#eef8f1;color:var(--green);font-weight:800;border-radius:999px;padding:10px 13px;cursor:pointer}.navlinks button:hover,.navlinks button.active{background:var(--green);color:white}
-  .wrap{max-width:1220px;margin:auto;padding:22px 18px 64px}.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:22px;align-items:stretch;margin-top:12px}.panel{background:white;border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);overflow:hidden}.heroMain{padding:32px;background:linear-gradient(135deg,#0f5b3f,#16865d 55%,#8fd36d);color:white;position:relative}.tag{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);padding:8px 12px;border-radius:999px;font-weight:800;font-size:13px}.hero h1{font-size:42px;line-height:1.05;margin:18px 0 12px}.hero p{font-size:16px;line-height:1.65;max-width:760px}.heroActions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.btn{border:0;border-radius:14px;padding:13px 16px;font-weight:900;cursor:pointer;background:var(--green);color:#fff;box-shadow:0 10px 22px rgba(15,91,63,.18)}.btn.secondary{background:#fff;color:var(--green)}.btn.ghost{background:#eef8f1;color:var(--green);box-shadow:none}.btn.warn{background:#b86b00}.heroSide{padding:22px;display:grid;gap:12px}.stat{padding:18px;border-radius:18px;background:#f4fbf6;border:1px solid var(--line)}.stat b{font-size:30px;color:var(--green)}.stat span{display:block;color:var(--muted);font-weight:700;margin-top:4px}.section{display:none;margin-top:22px}.section.active{display:block}.titleRow{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin:8px 0 14px}.titleRow h2{font-size:28px;margin:0}.titleRow p{margin:6px 0 0;color:var(--muted)}
-  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.card{background:white;border:1px solid var(--line);border-radius:20px;padding:18px;box-shadow:0 10px 28px rgba(16,35,27,.06)}.card h3{margin:10px 0 8px;font-size:19px}.card p{color:var(--muted);line-height:1.55;margin:0}.icon{width:48px;height:48px;border-radius:16px;background:#eef8f1;display:grid;place-items:center;font-size:24px}.pill{display:inline-block;background:#eef8f1;color:var(--green);border-radius:999px;padding:7px 10px;font-weight:900;font-size:12px;margin:4px 5px 0 0}.programCard{cursor:pointer;transition:.2s}.programCard:hover{transform:translateY(-3px);border-color:#9fd5af}.programCard.selected{outline:3px solid rgba(22,134,93,.22);border-color:var(--green)}
-  .app{display:grid;grid-template-columns:310px 1fr;gap:18px}.sidebar{padding:16px}.steps{display:grid;gap:8px}.step{display:flex;gap:11px;align-items:center;padding:12px;border-radius:15px;background:#f7fbf8;border:1px solid var(--line);cursor:pointer;font-weight:850}.step.active{background:var(--green);color:white}.num{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:white;color:var(--green);font-size:13px;font-weight:900}.step.active .num{background:var(--gold);color:#503200}.form{padding:20px}.formGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:13px}.field{display:grid;gap:7px}.field.full{grid-column:1/-1}.field label{font-size:13px;font-weight:900;color:#244034}.field input,.field select,.field textarea{width:100%;border:1px solid var(--line);border-radius:14px;padding:13px;background:#fbfdfb;font:inherit}.field textarea{min-height:92px;resize:vertical}.checklist{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.check{border:1px solid var(--line);border-radius:14px;padding:11px;background:#fbfdfb;display:flex;gap:9px;align-items:flex-start}.check input{margin-top:3px}.statusBox{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:16px}.status{border-radius:16px;padding:14px;background:#f4fbf6;border:1px solid var(--line)}.status b{display:block;font-size:22px;color:var(--green)}.result{margin-top:14px;padding:15px;border-radius:18px;background:#fff8df;border:1px solid #ffe2a0;line-height:1.6}.tableWrap{overflow:auto}.tbl{width:100%;border-collapse:collapse;background:white;border-radius:18px;overflow:hidden}.tbl th,.tbl td{border-bottom:1px solid var(--line);padding:13px;text-align:left;vertical-align:top}.tbl th{background:#eef8f1;color:var(--green);font-size:13px}.badge{font-weight:900;border-radius:999px;padding:6px 10px;display:inline-block;font-size:12px}.badge.draft{background:#fff2ca;color:#7a4a00}.badge.ok{background:#dcf8e9;color:#0f6b45}.badge.bad{background:#ffe4e4;color:#9b1c1c}.preview{padding:20px}.printPage{background:#fff;border:1px solid var(--line);border-radius:18px;padding:24px;line-height:1.55}.printPage h2{color:var(--green);margin-top:0}.mini{font-size:12px;color:var(--muted)}.notice{background:#eef8f1;border:1px solid #bde5ca;color:#174431;border-radius:16px;padding:13px;line-height:1.5}.dangerNotice{background:#fff1f1;border:1px solid #ffc7c7;color:#7b2020;border-radius:16px;padding:13px;line-height:1.5}.footer{margin-top:28px;color:var(--muted);font-size:13px;text-align:center}.mobileBar{display:none;position:fixed;bottom:10px;left:10px;right:10px;background:white;border:1px solid var(--line);border-radius:22px;padding:8px;box-shadow:var(--shadow);z-index:40;grid-template-columns:repeat(4,1fr);gap:6px}.mobileBar button{border:0;border-radius:14px;background:#eef8f1;color:var(--green);padding:10px 4px;font-size:11px;font-weight:900}
-  @media(max-width:900px){.hero,.app{grid-template-columns:1fr}.grid{grid-template-columns:1fr}.hero h1{font-size:31px}.navlinks{display:none}.formGrid,.checklist,.statusBox{grid-template-columns:1fr}.wrap{padding-bottom:90px}.mobileBar{display:grid}.sidebar{display:none}.titleRow{display:block}}
-  @media print{header,.hero,.sidebar,.heroActions,.titleRow,.mobileBar,.noPrint{display:none!important}.section{display:block}.wrap{padding:0}.panel,.card,.printPage{box-shadow:none;border:0}.app{display:block}}
- </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aplikasi Program Sawit Rakyat</title>
+  <style>
+    :root{--green:#0f5b3f;--green2:#16865d;--gold:#ffc857;--cream:#fff8e8;--dark:#10231b;--muted:#64766d;--line:#dbe7df;--soft:#eef8f1;--danger:#a32626;--ok:#16865d;--shadow:0 16px 45px rgba(15,91,63,.14);--r:22px}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:linear-gradient(180deg,#f5fff3 0,#fff 34%,#f4faf6 100%);color:var(--dark)}
+    header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.9);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+    .nav{max-width:1240px;margin:auto;padding:12px 18px;display:flex;align-items:center;justify-content:space-between;gap:16px}.brand{display:flex;align-items:center;gap:12px;font-weight:950}.brand small{display:block;color:var(--muted);font-size:11px;font-weight:750}.logo{width:46px;height:46px;border-radius:16px;background:radial-gradient(circle at 31% 25%,#fff 0 11%,transparent 12%),linear-gradient(135deg,var(--green),var(--green2));box-shadow:var(--shadow);position:relative}.logo:after{content:"";position:absolute;right:8px;bottom:8px;width:15px;height:15px;background:var(--gold);border-radius:50%}.navlinks{display:flex;gap:8px;flex-wrap:wrap}.navlinks button,.mobileBar button{border:0;background:var(--soft);color:var(--green);font-weight:900;border-radius:999px;padding:10px 13px;cursor:pointer}.navlinks button.active,.navlinks button:hover{background:var(--green);color:#fff}
+    .wrap{max-width:1240px;margin:auto;padding:22px 18px 72px}.panel,.card{background:#fff;border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);overflow:hidden}.hero{display:grid;grid-template-columns:1.16fr .84fr;gap:22px;align-items:stretch;margin-top:12px}.heroMain{padding:34px;background:linear-gradient(135deg,#0f5b3f,#16865d 58%,#88d26b);color:#fff}.tag{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.25);padding:8px 12px;border-radius:999px;font-weight:900;font-size:13px}.hero h1{font-size:43px;line-height:1.05;margin:18px 0 12px}.hero p{font-size:16px;line-height:1.65;max-width:760px}.heroActions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.btn{border:0;border-radius:14px;padding:13px 16px;font-weight:950;cursor:pointer;background:var(--green);color:#fff;box-shadow:0 10px 22px rgba(15,91,63,.18)}.btn:hover{filter:brightness(.97);transform:translateY(-1px)}.btn.secondary{background:#fff;color:var(--green)}.btn.ghost{background:var(--soft);color:var(--green);box-shadow:none}.btn.warn{background:#a86600}.btn.danger{background:var(--danger)}.heroSide{padding:22px;display:grid;gap:12px}.stat{padding:18px;border-radius:18px;background:#f4fbf6;border:1px solid var(--line)}.stat b{font-size:30px;color:var(--green)}.stat span{display:block;color:var(--muted);font-weight:750;margin-top:4px}.notice{background:var(--soft);border:1px solid #bde5ca;color:#174431;border-radius:16px;padding:13px;line-height:1.5}.dangerNotice{background:#fff1f1;border:1px solid #ffc7c7;color:#7b2020;border-radius:16px;padding:13px;line-height:1.5}.section{display:none;margin-top:22px}.section.active{display:block}.titleRow{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin:8px 0 14px}.titleRow h2{font-size:28px;margin:0}.titleRow p{margin:6px 0 0;color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.card{padding:18px}.card h3{margin:10px 0 8px;font-size:19px}.card p{color:var(--muted);line-height:1.55;margin:0}.icon{width:50px;height:50px;border-radius:16px;background:var(--soft);display:grid;place-items:center;font-size:25px}.pill{display:inline-block;background:var(--soft);color:var(--green);border-radius:999px;padding:7px 10px;font-weight:900;font-size:12px;margin:4px 5px 0 0}.programCard{cursor:pointer;transition:.2s}.programCard:hover{transform:translateY(-3px);border-color:#9fd5af}.programCard.selected{outline:3px solid rgba(22,134,93,.22);border-color:var(--green)}
+    .app{display:grid;grid-template-columns:310px 1fr;gap:18px}.sidebar{padding:16px}.steps{display:grid;gap:8px}.step{display:flex;gap:11px;align-items:center;padding:12px;border-radius:15px;background:#f7fbf8;border:1px solid var(--line);cursor:pointer;font-weight:850}.step.active{background:var(--green);color:white}.num{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:white;color:var(--green);font-size:13px;font-weight:900}.step.active .num{background:var(--gold);color:#503200}.form{padding:20px}.formGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:13px}.field{display:grid;gap:7px}.field.full{grid-column:1/-1}.field label{font-size:13px;font-weight:900;color:#244034}.field input,.field select,.field textarea{width:100%;border:1px solid var(--line);border-radius:14px;padding:13px;background:#fbfdfb;font:inherit}.field textarea{min-height:98px;resize:vertical}.checklist{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.check{border:1px solid var(--line);border-radius:14px;padding:11px;background:#fbfdfb;display:flex;gap:9px;align-items:flex-start}.check input{margin-top:3px}.statusBox{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:16px}.status{border-radius:16px;padding:14px;background:#f4fbf6;border:1px solid var(--line)}.status b{display:block;font-size:22px;color:var(--green)}.result{margin-top:14px;padding:15px;border-radius:18px;background:#fff8df;border:1px solid #ffe2a0;line-height:1.6}.tableWrap{overflow:auto}.tbl{width:100%;border-collapse:collapse;background:#fff;border-radius:18px;overflow:hidden}.tbl th,.tbl td{border-bottom:1px solid var(--line);padding:13px;text-align:left;vertical-align:top}.tbl th{background:var(--soft);color:var(--green);font-size:13px}.badge{font-weight:900;border-radius:999px;padding:6px 10px;display:inline-block;font-size:12px}.badge.draft{background:#fff2ca;color:#7a4a00}.badge.ok{background:#dcf8e9;color:#0f6b45}.badge.bad{background:#ffe4e4;color:#9b1c1c}.preview{padding:20px}.printPage{background:#fff;border:1px solid var(--line);border-radius:18px;padding:24px;line-height:1.55}.printPage h2{color:var(--green);margin-top:0}.mini{font-size:12px;color:var(--muted)}.footer{margin-top:28px;color:var(--muted);font-size:13px;text-align:center}.mobileBar{display:none;position:fixed;bottom:10px;left:10px;right:10px;background:white;border:1px solid var(--line);border-radius:22px;padding:8px;box-shadow:var(--shadow);z-index:70;grid-template-columns:repeat(4,1fr);gap:6px}.mobileBar button{border-radius:14px;padding:10px 4px;font-size:11px}
+    @media(max-width:920px){.hero,.app{grid-template-columns:1fr}.grid{grid-template-columns:1fr}.hero h1{font-size:31px}.navlinks{display:none}.formGrid,.checklist,.statusBox{grid-template-columns:1fr}.wrap{padding-bottom:94px}.mobileBar{display:grid}.sidebar{display:none}.titleRow{display:block}.heroMain{padding:25px}}
+    @media print{header,.hero,.sidebar,.heroActions,.titleRow,.mobileBar,.noPrint,.footer{display:none!important}.section{display:block}.wrap{padding:0}.panel,.card,.printPage{box-shadow:none;border:0}.app{display:block}}
+  </style>
 </head>
 <body>
 <header>
- <div class="nav">
-  <div class="brand"><div class="logo"></div><div>Program Sawit Rakyat<small>Data petani & Gapoktan</small></div></div>
-  <div class="navlinks">
-   <button class="active" onclick="showSection('home',this)">Beranda</button><button onclick="showSection('program',this)">Program</button><button onclick="showSection('upload',this)">Upload Program</button><button onclick="showSection('data',this)">Data Usulan</button><button onclick="showSection('preview',this)">Cetak Berkas</button>
-  </div>
- </div>
-</header>
-<div class="wrap">
- <div class="hero panel">
-  <div class="heroMain">
-   <span class="tag">🌴 Program Sawit Rakyat</span>
-   <h1>Aplikasi Program Sawit Rakyat</h1>
-   <p>Aplikasi ini dibuat untuk membantu petani, koperasi, kelompok tani, dan Gapoktan menyiapkan data program secara rapi: memilih kegiatan, mengisi profil pemohon, mengecek dokumen, menyimpan data, dan mencetak ringkasan usulan.</p>
-   <div class="heroActions"><button class="btn secondary" onclick="go('upload')">Mulai Upload Program</button><button class="btn ghost" onclick="go('program')">Lihat Program</button></div>
-  </div>
-  <div class="heroSide">
-   <div class="stat"><b>6</b><span>Kelompok kegiatan program yang tersedia.</span></div>
-   <div class="stat"><b>5</b><span>Tahap pengisian: program, pemohon, kebun, dokumen, review.</span></div>
-   <div class="notice"><b>Catatan penting:</b> Pastikan seluruh data pemohon, lokasi, dokumen, dan keterangan program diisi dengan benar sebelum dicetak atau diajukan.</div>
-  </div>
- </div>
-
- <section id="home" class="section active">
-  <div class="titleRow"><div><h2>Alur pengisian program</h2><p>Dirancang sederhana agar mudah dijelaskan ke petani dan Gapoktan.</p></div></div>
-  <div class="grid">
-   <div class="card"><div class="icon">1️⃣</div><h3>Pilih program</h3><p>Peserta memilih jenis program layanan yang paling sesuai dengan kebutuhan kelompok.</p></div>
-   <div class="card"><div class="icon">2️⃣</div><h3>Input profil</h3><p>Nama petani/kelompok, koperasi, desa, kecamatan, kabupaten, kontak, dan legalitas dasar.</p></div>
-   <div class="card"><div class="icon">3️⃣</div><h3>Data kebun</h3><p>Luas, status lahan, umur tanaman, produktivitas, koordinat, dan ringkasan kondisi lapangan.</p></div>
-   <div class="card"><div class="icon">4️⃣</div><h3>Checklist dokumen</h3><p>Peserta menyiapkan dokumen secara rapi sebelum proses pengajuan.</p></div>
-   <div class="card"><div class="icon">5️⃣</div><h3>Validasi awal</h3><p>Sistem memberi skor kelengkapan dan catatan kekurangan agar peserta tahu yang harus diperbaiki.</p></div>
-   <div class="card"><div class="icon">6️⃣</div><h3>Cetak ringkasan</h3><p>Ringkasan dapat dicetak sebagai bahan rapat kelompok atau pendampingan.</p></div>
-  </div>
- </section>
-
- <section id="program" class="section">
-  <div class="titleRow"><div><h2>Program Sawit Rakyat</h2><p>Kategori kegiatan yang dapat dipilih sesuai kebutuhan petani, kelompok tani, koperasi, dan Gapoktan.</p></div></div>
-  <div id="programGrid" class="grid"></div>
- </section>
-
- <section id="upload" class="section">
-  <div class="titleRow"><div><h2>Form upload usulan program</h2><p>Isi data pemohon, pilih program, centang dokumen, lalu simpan.</p></div><button class="btn noPrint" onclick="resetForm()">Reset Form</button></div>
-  <div class="app">
-   <aside class="panel sidebar"><div class="steps" id="steps"></div></aside>
-   <main class="panel form">
-    <div id="stepContent"></div>
-    <div class="statusBox">
-     <div class="status"><b id="score">0%</b><span>Kelengkapan</span></div>
-     <div class="status"><b id="docCount">0</b><span>Dokumen siap</span></div>
-     <div class="status"><b id="areaCount">0 ha</b><span>Total luas</span></div>
-     <div class="status"><b id="statusText">Draft</b><span>Status data</span></div>
+  <div class="nav">
+    <div class="brand"><div class="logo"></div><div>Program Sawit Rakyat<small>Data petani, koperasi & Gapoktan</small></div></div>
+    <div class="navlinks">
+      <button class="active" data-nav="home">Beranda</button>
+      <button data-nav="program">Program</button>
+      <button data-nav="upload">Upload Program</button>
+      <button data-nav="data">Data Usulan</button>
+      <button data-nav="preview">Cetak Berkas</button>
     </div>
-    <div class="result" id="resultBox">Isi data dan checklist dokumen untuk melihat hasil validasi awal.</div>
-   </main>
   </div>
- </section>
+</header>
 
- <section id="data" class="section">
-  <div class="titleRow"><div><h2>Data usulan tersimpan</h2><p>Data tersimpan di browser perangkat ini menggunakan localStorage.</p></div><button class="btn warn noPrint" onclick="clearAll()">Hapus Semua Data</button></div>
-  <div class="panel tableWrap"><table class="tbl"><thead><tr><th>Tanggal</th><th>Pemohon</th><th>Program</th><th>Lokasi</th><th>Luas</th><th>Status</th><th>Aksi</th></tr></thead><tbody id="dataRows"></tbody></table></div>
- </section>
+<div class="wrap">
+  <div class="hero panel">
+    <div class="heroMain">
+      <span class="tag">🌴 Program Sawit Rakyat</span>
+      <h1>Aplikasi Program Sawit Rakyat</h1>
+      <p>Aplikasi ini membantu petani, koperasi, kelompok tani, dan Gapoktan menyiapkan kegiatan program: memilih kebutuhan, mengisi profil pemohon, data kebun, dokumen, RAB, peluang barang/jasa, menyimpan data, dan mencetak ringkasan usulan.</p>
+      <div class="heroActions">
+        <button class="btn secondary" data-go="upload">Mulai Upload Program</button>
+        <button class="btn ghost" data-go="program">Lihat Program</button>
+      </div>
+    </div>
+    <div class="heroSide">
+      <div class="stat"><b>6</b><span>Kelompok kegiatan yang tersedia.</span></div>
+      <div class="stat"><b>5</b><span>Tahap pengisian: program, pemohon, kebun, dokumen, review.</span></div>
+      <div class="notice"><b>Fokus aplikasi:</b> membaca kebutuhan petani dan kelompok, lalu menampilkan dokumen, data teknis, RAB, serta peluang barang/jasa yang bisa ditawarkan.</div>
+    </div>
+  </div>
 
- <section id="preview" class="section">
-  <div class="titleRow"><div><h2>Preview ringkasan berkas</h2><p>Gunakan untuk bahan pendampingan, rapat kelompok, dan arsip pengajuan.</p></div><button class="btn noPrint" onclick="window.print()">Cetak / Simpan PDF</button></div>
-  <div class="panel preview"><div class="printPage" id="printPage"></div></div>
- </section>
+  <section id="home" class="section active">
+    <div class="titleRow"><div><h2>Alur pengisian program</h2><p>Dirancang sederhana agar mudah dijelaskan ke petani dan Gapoktan.</p></div></div>
+    <div class="grid">
+      <div class="card"><div class="icon">1️⃣</div><h3>Pilih kegiatan</h3><p>Pilih kegiatan yang sesuai dengan kebutuhan kebun atau kelompok.</p></div>
+      <div class="card"><div class="icon">2️⃣</div><h3>Input profil</h3><p>Isi nama pemohon, kelompok, desa, kecamatan, kabupaten, kontak, dan jabatan.</p></div>
+      <div class="card"><div class="icon">3️⃣</div><h3>Data kebun</h3><p>Masukkan luas, status lahan, umur tanaman, koordinat, dan ringkasan kondisi lapangan.</p></div>
+      <div class="card"><div class="icon">4️⃣</div><h3>Checklist dokumen</h3><p>Centang dokumen yang tersedia agar skor kelengkapan terbaca otomatis.</p></div>
+      <div class="card"><div class="icon">5️⃣</div><h3>Mitigasi kebutuhan</h3><p>Sistem menampilkan peluang produk/jasa dari data yang diisi.</p></div>
+      <div class="card"><div class="icon">6️⃣</div><h3>Cetak ringkasan</h3><p>Ringkasan dapat dicetak untuk rapat kelompok, pendampingan, dan arsip usulan.</p></div>
+    </div>
+  </section>
 
- <div class="footer">Aplikasi pendataan program sawit rakyat untuk petani, kelompok tani, koperasi, dan Gapoktan.</div>
+  <section id="program" class="section">
+    <div class="titleRow"><div><h2>Kegiatan yang dapat diajukan</h2><p>Klik kartu program atau tombol Lanjut untuk membuka detail kegiatan, dokumen, dan peluang kebutuhan.</p></div></div>
+    <div id="programGrid" class="grid"></div>
+  </section>
+
+  <section id="upload" class="section">
+    <div class="titleRow"><div><h2>Form upload usulan program</h2><p>Isi data pemohon, pilih kegiatan, centang dokumen, lalu simpan.</p></div><button class="btn noPrint" id="resetBtn">Reset Form</button></div>
+    <div class="app">
+      <aside class="panel sidebar"><div class="steps" id="steps"></div></aside>
+      <main class="panel form">
+        <div id="stepContent"></div>
+        <div class="statusBox">
+          <div class="status"><b id="score">0%</b><span>Kelengkapan</span></div>
+          <div class="status"><b id="docCount">0</b><span>Dokumen siap</span></div>
+          <div class="status"><b id="areaCount">0 ha</b><span>Total luas</span></div>
+          <div class="status"><b id="statusText">Draft</b><span>Status data</span></div>
+        </div>
+        <div class="result" id="resultBox">Isi data dan checklist dokumen untuk melihat hasil validasi awal.</div>
+      </main>
+    </div>
+  </section>
+
+  <section id="data" class="section">
+    <div class="titleRow"><div><h2>Data usulan tersimpan</h2><p>Data tersimpan di browser perangkat ini.</p></div><button class="btn warn noPrint" id="clearBtn">Hapus Semua Data</button></div>
+    <div class="panel tableWrap"><table class="tbl"><thead><tr><th>Tanggal</th><th>Pemohon</th><th>Program</th><th>Lokasi</th><th>Luas</th><th>Status</th><th>Aksi</th></tr></thead><tbody id="dataRows"></tbody></table></div>
+  </section>
+
+  <section id="preview" class="section">
+    <div class="titleRow"><div><h2>Preview ringkasan berkas</h2><p>Gunakan untuk bahan pendampingan, rapat kelompok, dan arsip pengajuan.</p></div><button class="btn noPrint" id="printBtn">Cetak / Simpan PDF</button></div>
+    <div class="panel preview"><div class="printPage" id="printPage"></div></div>
+  </section>
+
+  <div class="footer">Aplikasi pendataan program sawit rakyat untuk petani, kelompok tani, koperasi, dan Gapoktan.</div>
 </div>
-<div class="mobileBar"><button onclick="go('home')">Beranda</button><button onclick="go('program')">Program</button><button onclick="go('upload')">Upload</button><button onclick="go('data')">Data</button></div>
+
+<div class="mobileBar"><button data-go="home">Beranda</button><button data-go="program">Program</button><button data-go="upload">Upload</button><button data-go="data">Data</button></div>
+
 <script>
-const programs=[
- {id:'psr',icon:'🌱',name:'Peremajaan Sawit Rakyat',short:'Usulan peremajaan kebun sawit rakyat tanpa membuka lahan baru.',focus:['Data pekebun','Legalitas lahan','Umur tanaman','Produktivitas','Kelembagaan'],docs:['KTP/KK petani','Legalitas lahan','Surat kelembagaan','Peta/koordinat kebun','Foto kondisi tanaman','Rencana peremajaan']},
- {id:'sarpras',icon:'🚜',name:'Pengembangan Sarana dan Prasarana',short:'Usulan kebutuhan jalan produksi, alat, sarana kebun, dan dukungan teknis lain.',focus:['Kebutuhan sarpras','Lokasi kebun','Manfaat kelompok','RAB data','Prioritas wilayah'],docs:['Profil kelompok','Proposal kebutuhan','Peta lokasi','Foto kondisi lapangan','RAB data','Berita acara musyawarah']},
- {id:'riset',icon:'🔬',name:'Penelitian dan Pengembangan',short:'Input ide riset/pendampingan inovasi yang berkaitan dengan sawit.',focus:['Judul kegiatan','Tujuan','Mitra','Output','Rencana biaya'],docs:['Proposal kegiatan','Profil lembaga/mitra','Rencana kerja','RAB','Surat dukungan']},
- {id:'bbn',icon:'⛽',name:'Pengembangan & Pemanfaatan Bahan Bakar Nabati',short:'Program hilirisasi dan pemanfaatan sawit untuk energi.',focus:['Jenis kegiatan','Lokasi','Manfaat energi','Mitra','Output'],docs:['Ringkasan kegiatan','Profil mitra','Rencana lokasi','Estimasi manfaat','Surat dukungan']},
- {id:'sdm',icon:'🎓',name:'Pengembangan SDM',short:'Pengajuan peprogram, pendidikan, pendampingan, dan peningkatan kapasitas pekebun.',focus:['Peserta','Jenis peprogram','Kebutuhan materi','Jadwal','Lembaga pendamping'],docs:['Daftar calon peserta','Profil kelompok','Surat usulan','Jadwal peprogram','Materi/kebutuhan peprogram']},
- {id:'promosi',icon:'📣',name:'Promosi',short:'Pengajuan kegiatan promosi sawit, edukasi, pameran, atau publikasi kelompok.',focus:['Jenis promosi','Target audiens','Lokasi acara','Output publikasi','Dokumentasi'],docs:['Proposal promosi','Rencana acara','Profil pelaksana','RAB','Desain materi promosi']}
-];
-const steps=[['program','Pilih Program'],['pemohon','Profil Pemohon'],['kebun','Data Kebun/Kegiatan'],['dokumen','Checklist Dokumen'],['review','Review & Simpan']];
-let currentStep=0; let form=JSON.parse(localStorage.getItem('sawitDraft')||'{}'); if(!form.program) form.program='psr';
-function showSection(id,btn){document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('.navlinks button').forEach(b=>b.classList.remove('active')); if(btn)btn.classList.add('active'); if(id==='data')renderData(); if(id==='preview')renderPrint(); window.scrollTo({top:0,behavior:'smooth'});} function go(id){showSection(id,[...document.querySelectorAll('.navlinks button')].find(b=>b.textContent.toLowerCase().includes(id==='home'?'beranda':id==='upload'?'upload':id)))}
-function renderPrograms(){programGrid.innerHTML=programs.map(p=>`<div class="card programCard ${form.program===p.id?'selected':''}" onclick="selectProgram('${p.id}')"><div class="icon">${p.icon}</div><h3>${p.name}</h3><p>${p.short}</p><div style="margin-top:10px">${p.focus.map(x=>`<span class="pill">${x}</span>`).join('')}</div></div>`).join('')}
-function selectProgram(id){form.program=id;saveDraft();renderPrograms();renderStep();calc()}
-function renderSteps(){stepsEl=document.getElementById('steps');stepsEl.innerHTML=steps.map((s,i)=>`<div class="step ${i===currentStep?'active':''}" onclick="currentStep=${i};renderStep()"><span class="num">${i+1}</span>${s[1]}</div>`).join('')}
-function input(name,val){form[name]=val;saveDraft();calc();}
-function getProgram(){return programs.find(p=>p.id===form.program)||programs[0]}
-function renderStep(){renderSteps(); const p=getProgram(); const c=document.getElementById('stepContent');
- if(currentStep===0)c.innerHTML=`<h3>Pilih jenis program</h3><p class="mini">Klik salah satu program sesuai kebutuhan pemohon.</p><div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr))">${programs.map(x=>`<div class="card programCard ${form.program===x.id?'selected':''}" onclick="selectProgram('${x.id}')"><div class="icon">${x.icon}</div><h3>${x.name}</h3><p>${x.short}</p></div>`).join('')}</div><p><button class="btn" onclick="currentStep=1;renderStep()">Lanjut Profil Pemohon</button></p>`;
- if(currentStep===1)c.innerHTML=`<h3>Profil pemohon</h3><div class="formGrid"><div class="field"><label>Nama pemohon / ketua</label><input value="${form.nama||''}" oninput="input('nama',this.value)" placeholder="Contoh: Bapak Ahmad"></div><div class="field"><label>Kelompok / Gapoktan / Koperasi</label><input value="${form.kelompok||''}" oninput="input('kelompok',this.value)" placeholder="Contoh: Gapoktan Maju Sawit"></div><div class="field"><label>No. HP / WhatsApp</label><input value="${form.hp||''}" oninput="input('hp',this.value)" placeholder="08xxxxxxxxxx"></div><div class="field"><label>Jabatan</label><select onchange="input('jabatan',this.value)"><option ${form.jabatan==='Ketua Kelompok'?'selected':''}>Ketua Kelompok</option><option ${form.jabatan==='Pengurus Koperasi'?'selected':''}>Pengurus Koperasi</option><option ${form.jabatan==='Petani'?'selected':''}>Petani</option><option ${form.jabatan==='Pendamping'?'selected':''}>Pendamping</option></select></div><div class="field"><label>Desa</label><input value="${form.desa||''}" oninput="input('desa',this.value)"></div><div class="field"><label>Kecamatan</label><input value="${form.kecamatan||''}" oninput="input('kecamatan',this.value)"></div><div class="field"><label>Kabupaten</label><input value="${form.kabupaten||''}" oninput="input('kabupaten',this.value)"></div><div class="field"><label>Provinsi</label><input value="${form.provinsi||''}" oninput="input('provinsi',this.value)"></div></div><p><button class="btn" onclick="currentStep=2;renderStep()">Lanjut Data Kebun/Kegiatan</button></p>`;
- if(currentStep===2)c.innerHTML=`<h3>Data kebun / kegiatan</h3><div class="formGrid"><div class="field"><label>Luas kebun / cakupan kegiatan (ha)</label><input type="number" min="0" value="${form.luas||''}" oninput="input('luas',this.value)" placeholder="Contoh: 25"></div><div class="field"><label>Jumlah anggota/peserta</label><input type="number" min="0" value="${form.anggota||''}" oninput="input('anggota',this.value)" placeholder="Contoh: 35"></div><div class="field"><label>Status lahan</label><select onchange="input('statusLahan',this.value)"><option ${form.statusLahan==='SHM'?'selected':''}>SHM</option><option ${form.statusLahan==='SKT/Girik'?'selected':''}>SKT/Girik</option><option ${form.statusLahan==='Koperasi/Kelompok'?'selected':''}>Koperasi/Kelompok</option><option ${form.statusLahan==='Belum lengkap'?'selected':''}>Belum lengkap</option></select></div><div class="field"><label>Umur tanaman / durasi kegiatan</label><input value="${form.umur||''}" oninput="input('umur',this.value)" placeholder="Contoh: 25 tahun / 3 bulan"></div><div class="field full"><label>Koordinat / alamat lokasi</label><input value="${form.koordinat||''}" oninput="input('koordinat',this.value)" placeholder="Contoh: -6.xxxx, 106.xxxx"></div><div class="field full"><label>Ringkasan kebutuhan</label><textarea oninput="input('kebutuhan',this.value)" placeholder="Tuliskan kebutuhan utama kelompok...">${form.kebutuhan||''}</textarea></div></div><p><button class="btn" onclick="currentStep=3;renderStep()">Lanjut Checklist Dokumen</button></p>`;
- if(currentStep===3)c.innerHTML=`<h3>Checklist dokumen untuk ${p.name}</h3><p class="mini">Lengkapi checklist dokumen sesuai kebutuhan program dan ketersediaan berkas.</p><div class="checklist">${p.docs.map(d=>`<label class="check"><input type="checkbox" ${form.docs&&form.docs[d]?'checked':''} onchange="toggleDoc('${d.replace(/'/g,"\\'")}',this.checked)"><span>${d}</span></label>`).join('')}</div><p><button class="btn" onclick="currentStep=4;renderStep()">Lanjut Review</button></p>`;
- if(currentStep===4)c.innerHTML=`<h3>Review usulan</h3><div class="notice"><b>Program dipilih:</b> ${p.name}<br><b>Pemohon:</b> ${form.nama||'-'} / ${form.kelompok||'-'}<br><b>Lokasi:</b> ${[form.desa,form.kecamatan,form.kabupaten,form.provinsi].filter(Boolean).join(', ')||'-'}<br><b>Kebutuhan:</b> ${form.kebutuhan||'-'}</div><br><button class="btn" onclick="saveSubmission()">Simpan Data Usulan</button> <button class="btn ghost" onclick="go('preview')">Preview Cetak</button>`;
- calc();}
-function toggleDoc(d,v){form.docs=form.docs||{};form.docs[d]=v;saveDraft();calc()}
-function saveDraft(){localStorage.setItem('sawitDraft',JSON.stringify(form))}
-function calc(){const p=getProgram(); const req=['program','nama','kelompok','hp','desa','kecamatan','kabupaten','provinsi','luas','anggota','statusLahan','kebutuhan'];let filled=req.filter(k=>form[k]&&String(form[k]).trim()).length;let docReady=p.docs.filter(d=>form.docs&&form.docs[d]).length;let total=req.length+p.docs.length;let sc=Math.round(((filled+docReady)/total)*100);score.textContent=sc+'%';docCount.textContent=docReady+'/'+p.docs.length;areaCount.textContent=(form.luas||0)+' ha';statusText.textContent=sc>=85?'Siap Proses':sc>=55?'Perlu Lengkapi':'Draft';resultBox.className='result'; if(sc>=85){resultBox.innerHTML='✅ Data sudah cukup lengkap untuk proses presentasi/upload. Tetap cek kebenaran dokumen asli sebelum diajukan.'} else if(sc>=55){resultBox.innerHTML='⚠️ Data sudah mulai terbentuk, tetapi masih ada profil, data kebun/kegiatan, atau dokumen yang belum lengkap.'} else {resultBox.innerHTML='📝 Data masih draft. Lengkapi profil pemohon, lokasi, kebutuhan, dan checklist dokumen.'}}
-function saveSubmission(){const arr=JSON.parse(localStorage.getItem('sawitSubmissions')||'[]'); const p=getProgram(); const scoreNow=score.textContent; arr.unshift({...form,programName:p.name,date:new Date().toLocaleString('id-ID'),score:scoreNow}); localStorage.setItem('sawitSubmissions',JSON.stringify(arr)); alert('Data usulan tersimpan.'); go('data')}
-function renderData(){const arr=JSON.parse(localStorage.getItem('sawitSubmissions')||'[]');dataRows.innerHTML=arr.length?arr.map((x,i)=>`<tr><td>${x.date}</td><td><b>${x.nama||'-'}</b><br><span class="mini">${x.kelompok||'-'}</span></td><td>${x.programName||'-'}</td><td>${[x.desa,x.kecamatan,x.kabupaten].filter(Boolean).join(', ')||'-'}</td><td>${x.luas||0} ha</td><td><span class="badge ${parseInt(x.score)>=85?'ok':parseInt(x.score)>=55?'draft':'bad'}">${x.score||'0%'}</span></td><td><button class="btn ghost" onclick="loadItem(${i})">Buka</button></td></tr>`).join(''):`<tr><td colspan="7">Belum ada data usulan tersimpan.</td></tr>`}
-function loadItem(i){const arr=JSON.parse(localStorage.getItem('sawitSubmissions')||'[]');form=arr[i]||form;saveDraft();renderPrograms();renderStep();go('upload')}
-function clearAll(){if(confirm('Hapus semua data usulan tersimpan?')){localStorage.removeItem('sawitSubmissions');renderData()}}
-function resetForm(){if(confirm('Reset form saat ini?')){form={program:'psr'};localStorage.setItem('sawitDraft',JSON.stringify(form));renderPrograms();renderStep();}}
-function renderPrint(){const p=getProgram(); const docs=p.docs.map(d=>`<li>${form.docs&&form.docs[d]?'☑':'☐'} ${d}</li>`).join('');printPage.innerHTML=`<h2>Ringkasan Usulan Program Sawit Rakyat</h2><p class="mini">Dokumen ringkasan usulan program.</p><hr><h3>1. Program</h3><p><b>${p.name}</b><br>${p.short}</p><h3>2. Data Pemohon</h3><p>Nama: <b>${form.nama||'-'}</b><br>Kelompok/Gapoktan/Koperasi: <b>${form.kelompok||'-'}</b><br>Jabatan: ${form.jabatan||'-'}<br>HP/WA: ${form.hp||'-'}</p><h3>3. Lokasi & Data Kebun/Kegiatan</h3><p>${[form.desa,form.kecamatan,form.kabupaten,form.provinsi].filter(Boolean).join(', ')||'-'}<br>Luas/cakupan: ${form.luas||0} ha<br>Jumlah anggota/peserta: ${form.anggota||0}<br>Status lahan: ${form.statusLahan||'-'}<br>Umur tanaman/durasi: ${form.umur||'-'}<br>Koordinat: ${form.koordinat||'-'}</p><h3>4. Ringkasan Kebutuhan</h3><p>${form.kebutuhan||'-'}</p><h3>5. Checklist Dokumen</h3><ul>${docs}</ul><div class="dangerNotice"><b>Catatan:</b> Pastikan data, dokumen, peta lokasi, dan lampiran pendukung sudah sesuai dengan ketentuan program yang dipilih.</div>`}
-renderPrograms();renderStep();
+(function(){
+  const $ = (id) => document.getElementById(id);
+  const programGrid = $('programGrid'), stepsBox = $('steps'), stepContent = $('stepContent');
+  const scoreEl = $('score'), docCountEl = $('docCount'), areaCountEl = $('areaCount'), statusTextEl = $('statusText'), resultBox = $('resultBox');
+  const printPage = $('printPage'), dataRows = $('dataRows');
+
+  const programs = [
+    {id:'psr',icon:'🌱',name:'Peremajaan Sawit Rakyat',short:'Peremajaan kebun sawit rakyat yang sudah tua, tidak produktif, atau memakai benih tidak unggul tanpa membuka lahan baru.',focus:['Replanting','Kebun existing','Legalitas lahan','CPCL','RAB peremajaan'],activities:[
+      {t:'Peremajaan tanaman tua',d:'Kebun sawit rakyat yang umur tanamannya sudah tua dan produktivitasnya turun.'},
+      {t:'Peremajaan tanaman tidak produktif',d:'Kebun yang hasil TBS rendah sehingga perlu diganti dengan bibit unggul.'},
+      {t:'Peremajaan kebun benih tidak unggul',d:'Kebun yang menggunakan bibit asal-asalan dan perlu ditata ulang.'},
+      {t:'Pemetaan CPCL dan polygon kebun',d:'Pendataan calon petani, calon lokasi, koordinat, peta bidang, dan foto kondisi kebun.'},
+      {t:'Rencana kerja dan RAB replanting',d:'Rencana persiapan lahan, penumbangan, chipping, bibit, tanam, pupuk, dan pemeliharaan.'}
+    ],needs:['Data pekebun by name by address','Legalitas lahan','Peta/koordinat/polygon','Foto tanaman existing','RAB peremajaan','Rencana kerja kelompok'],products:['Jasa survey CPCL','Jasa GPS/polygon/drone mapping','Jasa penyusunan RAB','Bibit sawit unggul','Pupuk dan dolomit','Jasa tumbang/chipping/tanam','Monitoring progres'],docs:['KTP/KK petani','Legalitas lahan','Surat kelembagaan','Daftar CPCL','Peta/koordinat kebun','Foto kondisi tanaman','Rencana kerja','RAB peremajaan','Surat dukungan/kemitraan bila ada']},
+
+    {id:'sarpras',icon:'🚜',name:'Sarana dan Prasarana Kebun',short:'Dukungan sarana kebun untuk meningkatkan produksi, produktivitas, mutu, dan nilai tambah kebun sawit rakyat.',focus:['Jalan produksi','Benih/saprodi','Alsintan','Pasca panen','Unit pengolahan'],activities:[
+      {t:'Pembuatan/peningkatan jalan kebun',d:'Akses jalan produksi untuk pengangkutan TBS, saprodi, dan kegiatan kebun.'},
+      {t:'Benih, pupuk, dan pestisida ekstensifikasi',d:'Dukungan input kebun untuk pengembangan area yang memenuhi ketentuan.'},
+      {t:'Pupuk dan pestisida intensifikasi',d:'Dukungan peningkatan produktivitas kebun existing melalui saprodi.'},
+      {t:'Alat pasca panen',d:'Alat untuk membantu penanganan TBS dan kegiatan setelah panen.'},
+      {t:'Unit pengolahan hasil',d:'Sarana pengolahan untuk menaikkan nilai tambah kelompok/koperasi.'},
+      {t:'Alat transportasi',d:'Kendaraan/alat angkut kebun untuk distribusi TBS atau kebutuhan operasional kelompok.'},
+      {t:'Mesin pertanian',d:'Mesin untuk membantu pekerjaan kebun, perawatan, panen, atau pengangkutan.'},
+      {t:'Verifikasi teknis kebun',d:'Validasi teknis lokasi, data kebun, dan kebutuhan sarpras.'}
+    ],needs:['Profil kelompok/koperasi','Peta lokasi sarpras','Foto kondisi existing','Analisa manfaat','RAB pekerjaan/barang','Berita acara musyawarah'],products:['Jasa survey teknis','Jasa desain jalan kebun','Sewa/penjualan alat berat','Traktor/mesin pertanian','Alat transportasi kebun','Pupuk/pestisida','Unit pengolahan hasil','Jasa verifikasi teknis'],docs:['Profil kelompok','Proposal kebutuhan','Peta lokasi','Foto kondisi lapangan','RAB pekerjaan/barang','Berita acara musyawarah','Daftar anggota penerima manfaat','Surat dukungan desa/dinas bila ada']},
+
+    {id:'sdm',icon:'🎓',name:'Pengembangan SDM Pekebun',short:'Pendidikan, pelatihan, penyuluhan, pendampingan, dan sertifikasi untuk meningkatkan kemampuan petani sawit.',focus:['Pelatihan teknis','Manajemen kebun','Sertifikasi','Pendampingan','Penyuluhan'],activities:[
+      {t:'Pelatihan budidaya kelapa sawit',d:'Materi praktik kebun, pemupukan, pemangkasan, pengendalian gulma, dan panen.'},
+      {t:'Pelatihan manajemen perkebunan',d:'Manajemen kelompok, pencatatan produksi, biaya, penjualan, dan rencana kerja kebun.'},
+      {t:'Sertifikasi tenaga kerja/perkebunan',d:'Peningkatan kompetensi pekerja kebun agar sesuai standar.'},
+      {t:'Penyuluhan dan pendampingan teknis',d:'Pendampingan berkelanjutan untuk meningkatkan produktivitas dan efisiensi kebun.'},
+      {t:'Beasiswa/pendidikan sawit',d:'Dukungan pendidikan untuk SDM yang terkait sektor perkebunan sawit.'}
+    ],needs:['Daftar calon peserta','Profil kelompok','Kebutuhan materi','Jadwal kegiatan','Narasumber/lembaga pelaksana','RAB pelatihan'],products:['Jasa penyelenggara pelatihan','Modul pelatihan','Aplikasi absensi peserta','Sertifikat pelatihan','Pendamping teknis kebun','Konsultan manajemen kelompok'],docs:['Daftar calon peserta','Profil kelompok','Surat usulan','Jadwal kegiatan','Materi/kebutuhan pelatihan','RAB pelatihan','Profil narasumber/lembaga pelaksana']},
+
+    {id:'riset',icon:'🔬',name:'Riset dan Pengembangan Sawit',short:'Usulan riset, kajian, inovasi, demplot, atau pendampingan teknologi yang mendukung produktivitas sawit.',focus:['Grant riset','Demplot','Inovasi','Mitra riset','Output teknologi'],activities:[
+      {t:'Grant riset sawit',d:'Proposal riset oleh lembaga penelitian/perguruan tinggi/mitra yang relevan.'},
+      {t:'Demplot teknologi kebun',d:'Uji penerapan teknologi pupuk, budidaya, mekanisasi, atau monitoring kebun di lapangan.'},
+      {t:'Kajian produktivitas dan keberlanjutan',d:'Analisa teknis untuk meningkatkan hasil dan tata kelola kebun rakyat.'},
+      {t:'Lomba/kompetisi riset mahasiswa',d:'Pengembangan ide riset mahasiswa yang terkait sawit.'}
+    ],needs:['Judul dan latar belakang','Mitra riset','Lokasi/demplot','Metodologi','Output terukur','RAB riset'],products:['Jasa penyusunan proposal riset','Demplot kebun','Sensor/IoT kebun','Drone monitoring','Analisa tanah/daun','Laporan teknis'],docs:['Proposal riset/kajian','Profil lembaga/mitra','Rencana kerja','RAB','Surat dukungan','CV tim pelaksana','Rencana output']},
+
+    {id:'promosi',icon:'📣',name:'Promosi dan Edukasi Sawit',short:'Promosi, pameran, publikasi, kampanye edukasi, dan penguatan citra sawit berkelanjutan.',focus:['Pameran','Publikasi','Edukasi','Materi promosi','Dokumentasi'],activities:[
+      {t:'Pameran dan expo sawit',d:'Kegiatan promosi produk, teknologi, kelembagaan, dan hasil kelompok/koperasi.'},
+      {t:'Kampanye edukasi sawit',d:'Edukasi publik mengenai sawit rakyat, produktivitas, keberlanjutan, dan tata kelola kebun.'},
+      {t:'Publikasi media dan digital',d:'Konten video, brosur, artikel, media sosial, website, dan dokumentasi kegiatan.'},
+      {t:'Forum temu usaha',d:'Pertemuan kelompok, koperasi, pembeli, penyedia sarpras, dan mitra usaha.'}
+    ],needs:['Tema kegiatan','Target audiens','Lokasi/jadwal','Materi promosi','RAB acara','Dokumentasi output'],products:['Jasa event organizer','Desain brosur/spanduk','Video dokumentasi','Website landing page','Publikasi media sosial','Booth pameran'],docs:['Proposal promosi','Rencana acara','Profil pelaksana','RAB','Desain materi promosi','Target peserta/audiens','Rencana dokumentasi']},
+
+    {id:'bioenergi',icon:'⚡',name:'Bioenergi dan Hilirisasi Sawit',short:'Kegiatan pemanfaatan hasil sawit untuk energi, nilai tambah, dan pengolahan turunan berbasis kelompok atau kemitraan.',focus:['Bioenergi','Hilirisasi','Nilai tambah','Kemitraan','Unit usaha'],activities:[
+      {t:'Pemanfaatan limbah sawit untuk energi',d:'Kajian atau pengolahan limbah sawit menjadi energi/produk bernilai.'},
+      {t:'Unit usaha hilirisasi kelompok',d:'Pengembangan unit pengolahan turunan sawit skala kelompok/koperasi.'},
+      {t:'Kajian kelayakan bioenergi',d:'Analisa teknis dan bisnis untuk pemanfaatan energi berbasis sawit.'},
+      {t:'Kemitraan pengolahan hasil',d:'Kerja sama kelompok, koperasi, dan mitra industri untuk meningkatkan nilai tambah.'}
+    ],needs:['Profil unit usaha','Bahan baku','Lokasi kegiatan','Mitra teknologi','Kajian kelayakan','RAB investasi'],products:['Jasa studi kelayakan','Mesin pengolahan','Instalasi energi sederhana','Konsultan kemitraan','Desain unit usaha','Monitoring produksi'],docs:['Proposal kegiatan','Profil kelompok/usaha','Data bahan baku','Rencana lokasi','RAB investasi','Surat kemitraan','Kajian kelayakan']}
+  ];
+
+  const steps = [['program','Pilih Program'],['pemohon','Profil Pemohon'],['kebun','Data Kebun/Kegiatan'],['dokumen','Checklist Dokumen'],['review','Review & Simpan']];
+  let currentStep = 0;
+  let form = safeParse(localStorage.getItem('sawitDraft')) || {program:'psr', docs:{}};
+  if(!form.program) form.program = 'psr';
+  if(!form.docs) form.docs = {};
+
+  function safeParse(v){try{return v?JSON.parse(v):null}catch(e){return null}}
+  function esc(s){return String(s ?? '').replace(/[&<>'"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));}
+  function listItems(arr){return '<ul>' + arr.map(x => '<li>'+esc(x)+'</li>').join('') + '</ul>';}
+  function getProgram(){return programs.find(p => p.id === form.program) || programs[0];}
+  function saveDraft(){localStorage.setItem('sawitDraft', JSON.stringify(form));}
+
+  function showSection(id){
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    const target = $(id); if(target) target.classList.add('active');
+    document.querySelectorAll('.navlinks button').forEach(b => b.classList.toggle('active', b.dataset.nav === id));
+    if(id === 'data') renderData();
+    if(id === 'preview') renderPrint();
+    window.scrollTo({top:0, behavior:'smooth'});
+  }
+
+  function renderProgramDetail(p){
+    return '<div class="panel" style="padding:18px">' +
+      '<div class="notice"><b>'+esc(p.icon+' '+p.name)+'</b><br>'+esc(p.short)+'</div><br>' +
+      '<div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr))">' +
+      '<div class="card"><h3>Kegiatan yang bisa diajukan</h3>'+p.activities.map(a => '<p style="margin:0 0 11px"><b>'+esc(a.t)+'</b><br><span class="mini">'+esc(a.d)+'</span></p>').join('')+'</div>' +
+      '<div class="card"><h3>Dokumen utama</h3>'+listItems(p.docs)+'</div>' +
+      '<div class="card"><h3>Peluang barang/jasa</h3>'+listItems(p.products)+'</div>' +
+      '</div></div>';
+  }
+  function renderActivityList(p){
+    return '<div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr))">' + p.activities.map(a => '<div class="card"><h3>'+esc(a.t)+'</h3><p>'+esc(a.d)+'</p></div>').join('') + '</div>';
+  }
+  function renderPrograms(){
+    programGrid.innerHTML = programs.map(p => '<div class="card programCard '+(form.program===p.id?'selected':'')+'" data-select-program="'+p.id+'"><div class="icon">'+p.icon+'</div><h3>'+esc(p.name)+'</h3><p>'+esc(p.short)+'</p><div style="margin-top:10px">'+p.focus.map(x => '<span class="pill">'+esc(x)+'</span>').join('')+'</div><button class="btn" style="margin-top:14px" data-continue-program="'+p.id+'">Lanjut</button></div>').join('');
+  }
+  function selectProgram(id, goNext){
+    form.program = id; form.subKegiatan = ''; if(!form.docs) form.docs = {}; saveDraft(); renderPrograms(); renderStep(); calc();
+    if(goNext){ currentStep = 0; showSection('upload'); renderStep(); }
+  }
+  function renderSteps(){
+    stepsBox.innerHTML = steps.map((s,i) => '<div class="step '+(i===currentStep?'active':'')+'" data-step="'+i+'"><span class="num">'+(i+1)+'</span>'+esc(s[1])+'</div>').join('');
+  }
+  function renderStep(){
+    renderSteps(); const p = getProgram();
+    if(currentStep === 0){
+      stepContent.innerHTML = '<h3>Pilih kegiatan program</h3><p class="mini">Klik program, baca detailnya, lalu tekan Lanjut Profil Pemohon.</p><div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr))">' +
+      programs.map(x => '<div class="card programCard '+(form.program===x.id?'selected':'')+'" data-select-program="'+x.id+'"><div class="icon">'+x.icon+'</div><h3>'+esc(x.name)+'</h3><p>'+esc(x.short)+'</p><button class="btn ghost" style="margin-top:12px" data-select-program="'+x.id+'">Lihat Detail</button></div>').join('') +
+      '</div><div style="margin-top:16px">'+renderProgramDetail(p)+'</div><p><button class="btn" data-next-step="1">Lanjut Profil Pemohon</button></p>';
+    }
+    if(currentStep === 1){
+      stepContent.innerHTML = '<h3>Profil pemohon</h3><div class="formGrid">'+
+        field('Nama pemohon / ketua','nama','text','Contoh: Bapak Ahmad') + field('Kelompok / Gapoktan / Koperasi','kelompok','text','Contoh: Gapoktan Maju Sawit') + field('No. HP / WhatsApp','hp','text','08xxxxxxxxxx') +
+        '<div class="field"><label>Jabatan</label><select data-field="jabatan">'+opts(['Ketua Kelompok','Pengurus Koperasi','Petani','Pendamping'], form.jabatan)+'</select></div>'+
+        field('Desa','desa') + field('Kecamatan','kecamatan') + field('Kabupaten','kabupaten') + field('Provinsi','provinsi') +
+        '</div><p><button class="btn" data-next-step="2">Lanjut Data Kebun/Kegiatan</button></p>';
+    }
+    if(currentStep === 2){
+      stepContent.innerHTML = '<h3>Data kebun / kegiatan</h3><div class="notice"><b>Kegiatan dipilih:</b> '+esc(p.name)+'<br>Pilih sub-kegiatan agar kebutuhan dokumen dan peluang produk/jasa langsung terbaca.</div><br><div class="formGrid">'+
+        '<div class="field full"><label>Sub-kegiatan yang diajukan</label><select data-field="subKegiatan"><option value="">Pilih sub-kegiatan</option>'+p.activities.map(a=>'<option value="'+esc(a.t)+'" '+(form.subKegiatan===a.t?'selected':'')+'>'+esc(a.t)+'</option>').join('')+'</select></div>'+
+        field('Luas kebun / cakupan kegiatan (ha)','luas','number','Contoh: 25') + field('Jumlah anggota/peserta','anggota','number','Contoh: 35') +
+        '<div class="field"><label>Status lahan</label><select data-field="statusLahan">'+opts(['SHM','SKT/Girik','Koperasi/Kelompok','Belum lengkap'], form.statusLahan)+'</select></div>'+
+        field('Umur tanaman / durasi kegiatan','umur','text','Contoh: 25 tahun / 3 bulan') + field('Koordinat / alamat lokasi','koordinat','text','Contoh: -6.xxxx, 106.xxxx','full') +
+        '<div class="field full"><label>Ringkasan kebutuhan</label><textarea data-field="kebutuhan" placeholder="Tuliskan kebutuhan utama kelompok...">'+esc(form.kebutuhan||'')+'</textarea></div>'+
+        '</div><h3>Daftar kegiatan dan peluang yang terbaca</h3>'+renderActivityList(p)+'<div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(230px,1fr));margin-top:14px"><div class="card"><h3>Kebutuhan data</h3>'+listItems(p.needs)+'</div><div class="card"><h3>Peluang yang bisa kita tawarkan</h3>'+listItems(p.products)+'</div></div><p><button class="btn" data-next-step="3">Lanjut Checklist Dokumen</button></p>';
+    }
+    if(currentStep === 3){
+      stepContent.innerHTML = '<h3>Checklist dokumen untuk '+esc(p.name)+'</h3><p class="mini">Centang dokumen yang sudah tersedia.</p><div class="checklist">'+p.docs.map(d => '<label class="check"><input type="checkbox" data-doc="'+esc(d)+'" '+(form.docs&&form.docs[d]?'checked':'')+'><span>'+esc(d)+'</span></label>').join('')+'</div><p><button class="btn" data-next-step="4">Lanjut Review</button></p>';
+    }
+    if(currentStep === 4){
+      stepContent.innerHTML = '<h3>Review usulan</h3><div class="notice"><b>Program dipilih:</b> '+esc(p.name)+'<br><b>Sub-kegiatan:</b> '+esc(form.subKegiatan||'-')+'<br><b>Pemohon:</b> '+esc(form.nama||'-')+' / '+esc(form.kelompok||'-')+'<br><b>Lokasi:</b> '+esc([form.desa,form.kecamatan,form.kabupaten,form.provinsi].filter(Boolean).join(', ')||'-')+'<br><b>Kebutuhan:</b> '+esc(form.kebutuhan||'-')+'</div><br><button class="btn" id="saveSubmissionBtn">Simpan Data Usulan</button> <button class="btn ghost" data-go="preview">Preview Cetak</button>';
+    }
+    calc();
+  }
+  function field(label,name,type='text',placeholder='',cls=''){
+    return '<div class="field '+cls+'"><label>'+esc(label)+'</label><input type="'+type+'" value="'+esc(form[name]||'')+'" data-field="'+name+'" placeholder="'+esc(placeholder)+'"></div>';
+  }
+  function opts(arr, selected){return '<option value="">Pilih</option>'+arr.map(v=>'<option value="'+esc(v)+'" '+(selected===v?'selected':'')+'>'+esc(v)+'</option>').join('');}
+  function calc(){
+    const p = getProgram();
+    const req = ['program','nama','kelompok','hp','desa','kecamatan','kabupaten','provinsi','luas','anggota','statusLahan','kebutuhan'];
+    const filled = req.filter(k => form[k] && String(form[k]).trim()).length;
+    const docReady = p.docs.filter(d => form.docs && form.docs[d]).length;
+    const total = req.length + p.docs.length;
+    const sc = Math.round(((filled + docReady) / total) * 100);
+    scoreEl.textContent = sc + '%'; docCountEl.textContent = docReady + '/' + p.docs.length; areaCountEl.textContent = (form.luas || 0) + ' ha';
+    statusTextEl.textContent = sc >= 85 ? 'Siap Proses' : sc >= 55 ? 'Perlu Lengkapi' : 'Draft';
+    resultBox.innerHTML = sc >= 85 ? '✅ Data sudah cukup lengkap untuk proses presentasi/upload. Tetap cek kebenaran dokumen asli sebelum diajukan.' : sc >= 55 ? '⚠️ Data sudah mulai terbentuk, tetapi masih ada profil, data kebun/kegiatan, atau dokumen yang belum lengkap.' : '📝 Data masih draft. Lengkapi profil pemohon, lokasi, kebutuhan, dan checklist dokumen.';
+  }
+  function saveSubmission(){
+    const arr = safeParse(localStorage.getItem('sawitSubmissions')) || [];
+    const p = getProgram();
+    arr.unshift({...form, programName:p.name, date:new Date().toLocaleString('id-ID'), score:scoreEl.textContent});
+    localStorage.setItem('sawitSubmissions', JSON.stringify(arr));
+    alert('Data usulan tersimpan.'); showSection('data');
+  }
+  function renderData(){
+    const arr = safeParse(localStorage.getItem('sawitSubmissions')) || [];
+    dataRows.innerHTML = arr.length ? arr.map((x,i)=>'<tr><td>'+esc(x.date)+'</td><td><b>'+esc(x.nama||'-')+'</b><br><span class="mini">'+esc(x.kelompok||'-')+'</span></td><td>'+esc(x.programName||'-')+'</td><td>'+esc([x.desa,x.kecamatan,x.kabupaten].filter(Boolean).join(', ')||'-')+'</td><td>'+esc(x.luas||0)+' ha</td><td><span class="badge '+(parseInt(x.score)>=85?'ok':parseInt(x.score)>=55?'draft':'bad')+'">'+esc(x.score||'0%')+'</span></td><td><button class="btn ghost" data-load-item="'+i+'">Buka</button></td></tr>').join('') : '<tr><td colspan="7">Belum ada data usulan tersimpan.</td></tr>';
+  }
+  function renderPrint(){
+    const p = getProgram();
+    const docs = p.docs.map(d => '<li>'+(form.docs&&form.docs[d]?'☑':'☐')+' '+esc(d)+'</li>').join('');
+    printPage.innerHTML = '<h2>Ringkasan Usulan Program Sawit Rakyat</h2><p class="mini">Dokumen ringkasan usulan program.</p><hr><h3>1. Program</h3><p><b>'+esc(p.name)+'</b><br>'+esc(p.short)+'</p><h3>2. Sub-kegiatan</h3><p>'+esc(form.subKegiatan||'-')+'</p><h3>3. Data Pemohon</h3><p>Nama: <b>'+esc(form.nama||'-')+'</b><br>Kelompok/Gapoktan/Koperasi: <b>'+esc(form.kelompok||'-')+'</b><br>Jabatan: '+esc(form.jabatan||'-')+'<br>HP/WA: '+esc(form.hp||'-')+'</p><h3>4. Lokasi & Data Kebun/Kegiatan</h3><p>'+esc([form.desa,form.kecamatan,form.kabupaten,form.provinsi].filter(Boolean).join(', ')||'-')+'<br>Luas/cakupan: '+esc(form.luas||0)+' ha<br>Jumlah anggota/peserta: '+esc(form.anggota||0)+'<br>Status lahan: '+esc(form.statusLahan||'-')+'<br>Umur tanaman/durasi: '+esc(form.umur||'-')+'<br>Koordinat: '+esc(form.koordinat||'-')+'</p><h3>5. Ringkasan Kebutuhan</h3><p>'+esc(form.kebutuhan||'-')+'</p><h3>6. Checklist Dokumen</h3><ul>'+docs+'</ul><h3>7. Peluang barang/jasa</h3>'+listItems(p.products)+'<div class="dangerNotice"><b>Catatan:</b> Pastikan data, dokumen, peta lokasi, dan lampiran pendukung sudah sesuai dengan ketentuan program yang dipilih.</div>';
+  }
+  function resetForm(){ if(confirm('Reset form saat ini?')){form={program:'psr',docs:{}};saveDraft();currentStep=0;renderPrograms();renderStep();} }
+  function clearAll(){ if(confirm('Hapus semua data usulan tersimpan?')){localStorage.removeItem('sawitSubmissions');renderData();} }
+
+  document.addEventListener('click', function(e){
+    const nav = e.target.closest('[data-nav]'); if(nav){showSection(nav.dataset.nav); return;}
+    const go = e.target.closest('[data-go]'); if(go){showSection(go.dataset.go); return;}
+    const sel = e.target.closest('[data-select-program]'); if(sel){selectProgram(sel.dataset.selectProgram, false); return;}
+    const cont = e.target.closest('[data-continue-program]'); if(cont){selectProgram(cont.dataset.continueProgram, true); return;}
+    const step = e.target.closest('[data-step]'); if(step){currentStep = Number(step.dataset.step); renderStep(); return;}
+    const next = e.target.closest('[data-next-step]'); if(next){currentStep = Number(next.dataset.nextStep); renderStep(); return;}
+    const load = e.target.closest('[data-load-item]'); if(load){const arr=safeParse(localStorage.getItem('sawitSubmissions'))||[]; form=arr[Number(load.dataset.loadItem)]||form; if(!form.docs) form.docs={}; saveDraft(); currentStep=4; renderPrograms(); renderStep(); showSection('upload'); return;}
+    if(e.target.id === 'saveSubmissionBtn'){saveSubmission(); return;}
+  });
+  document.addEventListener('input', function(e){const f=e.target.dataset.field; if(f){form[f]=e.target.value; saveDraft(); calc();}});
+  document.addEventListener('change', function(e){const f=e.target.dataset.field; if(f){form[f]=e.target.value; saveDraft(); calc();} const d=e.target.dataset.doc; if(d){form.docs=form.docs||{}; form.docs[d]=e.target.checked; saveDraft(); calc();}});
+  $('resetBtn').addEventListener('click', resetForm); $('clearBtn').addEventListener('click', clearAll); $('printBtn').addEventListener('click', () => window.print());
+
+  renderPrograms(); renderStep();
+})();
 </script>
 </body>
 </html>
